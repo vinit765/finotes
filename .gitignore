@@ -1,0 +1,14 @@
+.DS_Store
+node_modules/
+dist/
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+*.pyd
+.env
+backend/.env
+frontend/.env
+notes.db
+test_notes.db

@@ -1,0 +1,491 @@
+:root {
+  font-family: "Manrope", sans-serif;
+  color: #f5f7fa;
+  background:
+    radial-gradient(circle at top left, rgba(124, 231, 195, 0.18), transparent 26%),
+    radial-gradient(circle at top right, rgba(120, 201, 255, 0.18), transparent 24%),
+    linear-gradient(180deg, #081018 0%, #0c1117 40%, #0a1016 100%);
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --surface: rgba(16, 24, 39, 0.78);
+  --surface-strong: rgba(11, 18, 32, 0.92);
+  --surface-soft: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #f5f7fa;
+  --muted: #98a8bd;
+  --mint: #7ce7c3;
+  --aqua: #78c9ff;
+  --peach: #f4b38a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: var(--mint);
+  text-decoration: none;
+}
+
+.auth-shell,
+.dashboard-shell {
+  min-height: 100vh;
+  padding: 32px;
+}
+
+.auth-shell {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.auth-hero,
+.auth-card,
+.notes-rail,
+.editor-card,
+.insight-card,
+.metric-card,
+.state-card,
+.modal-card {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(18px);
+}
+
+.auth-hero,
+.auth-card,
+.notes-rail,
+.editor-card {
+  border-radius: 28px;
+}
+
+.auth-hero {
+  padding: 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+}
+
+.auth-hero h1,
+.topbar h1 {
+  margin: 0;
+  font-family: "Sora", sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  line-height: 1.04;
+  letter-spacing: -0.06em;
+}
+
+.auth-hero p,
+.topbar-subtitle,
+.auth-card-header p,
+.editor-toolbar p,
+.empty-state span,
+.insight-card p,
+.modal-card p {
+  color: var(--muted);
+}
+
+.pill {
+  width: fit-content;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(124, 231, 195, 0.12);
+  color: var(--mint);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.subtle-pill {
+  background: rgba(120, 201, 255, 0.1);
+  color: var(--aqua);
+}
+
+.hero-grid,
+.hero-panels,
+.workspace-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.hero-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hero-stat,
+.metric-card {
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hero-stat span,
+.metric-card span,
+.insight-title,
+.rail-header h2,
+.editor-toolbar h2,
+.auth-card-header h2 {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.hero-stat strong,
+.metric-card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.1rem;
+}
+
+.auth-card {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-form,
+.editor-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.auth-form label,
+.modal-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-shell,
+.editor-title-input,
+.editor-textarea,
+.modal-input {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+}
+
+.input-shell {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 16px;
+}
+
+.input-shell input,
+.editor-title-input,
+.editor-textarea,
+.modal-input {
+  width: 100%;
+  outline: none;
+}
+
+.input-shell input,
+.editor-title-input,
+.editor-textarea,
+.modal-input {
+  border: 0;
+  background: transparent;
+  color: inherit;
+}
+
+.primary-button,
+.secondary-button,
+.icon-button,
+.history-item,
+.note-tile {
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.primary-button,
+.secondary-button {
+  border: 0;
+  border-radius: 16px;
+  padding: 14px 16px;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, var(--mint), #93f7d7);
+  color: #06201b;
+}
+
+.secondary-button,
+.icon-button,
+.history-item {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.danger-button {
+  color: #ffb4b4;
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.icon-button:hover,
+.note-tile:hover,
+.history-item:hover {
+  transform: translateY(-1px);
+}
+
+.auth-footnote {
+  margin-top: 22px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.hero-panels {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 24px 0;
+}
+
+.workspace-grid {
+  grid-template-columns: 290px minmax(0, 1fr) 320px;
+  align-items: start;
+}
+
+.notes-rail {
+  padding: 20px;
+  min-height: 620px;
+}
+
+.rail-header,
+.editor-toolbar,
+.toolbar-actions,
+.modal-actions {
+  display: flex;
+  align-items: center;
+}
+
+.rail-header,
+.editor-toolbar {
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.icon-button {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.notes-list,
+.history-list {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.note-tile,
+.history-item {
+  width: 100%;
+  padding: 16px;
+  text-align: left;
+  border-radius: 18px;
+  cursor: pointer;
+}
+
+.note-tile {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+}
+
+.note-tile strong,
+.history-item strong,
+.insight-card strong {
+  display: block;
+}
+
+.note-tile span,
+.note-tile small,
+.history-item span,
+.history-item small {
+  display: block;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.note-tile-active {
+  border-color: rgba(124, 231, 195, 0.42);
+  background: rgba(124, 231, 195, 0.1);
+}
+
+.editor-card {
+  padding: 24px;
+  min-height: 620px;
+}
+
+.toolbar-actions {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.editor-title-input {
+  padding: 18px 20px;
+  border-radius: 18px;
+  font-family: "Sora", sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: -0.05em;
+}
+
+.editor-textarea {
+  min-height: 420px;
+  padding: 20px;
+  border-radius: 24px;
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.insights-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.insight-card {
+  padding: 20px;
+  border-radius: 24px;
+}
+
+.insight-title {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+  color: var(--aqua);
+}
+
+.history-card {
+  min-height: 420px;
+}
+
+.empty-state,
+.state-card {
+  padding: 24px;
+  text-align: center;
+}
+
+.state-card {
+  border-radius: 24px;
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: 3px solid rgba(255, 255, 255, 0.08);
+  border-top-color: var(--mint);
+  margin: 0 auto 14px;
+  animation: spin 0.8s linear infinite;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 7, 18, 0.6);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.modal-card {
+  width: min(100%, 460px);
+  padding: 24px;
+  border-radius: 24px;
+}
+
+.modal-input {
+  margin-top: 8px;
+  padding: 14px 16px;
+  border-radius: 16px;
+}
+
+.modal-actions {
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1100px) {
+  .auth-shell,
+  .workspace-grid,
+  .hero-panels {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar,
+  .editor-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 700px) {
+  .auth-shell,
+  .dashboard-shell {
+    padding: 16px;
+  }
+
+  .auth-hero,
+  .auth-card,
+  .notes-rail,
+  .editor-card,
+  .insight-card {
+    padding: 20px;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+}
